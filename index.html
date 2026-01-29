@@ -85,7 +85,7 @@
         const TEXTS = {
             siteTitle: "মাসউদ আলিমী", subtitle: "কুরআন তাফসির ও সীরাত কোর্স", home: "হোম", searchPlaceholder: "ক্লাস খুঁজুন...", listen: "শুনুন", download: "ডাউনলোড", summary: "সারসংক্ষেপ", resources: "রিসোর্স ও নোট", syllabus: "পরবর্তী ক্লাসের প্রস্তুতি ও সিলেবাস", back: "ফিরে যান", playOnDrive: "ড্রাইভে প্লে করুন", footerText: "সর্বস্বত্ব সংরক্ষিত © ২০২৬ | মাসউদ আলিমী", tafsir: "তাফসির", seerat: "সীরাত", jummah: "জুমার বয়ান", halakah: "মহিলাদের হালাকাহ", all: "সব", noResults: "কোনো ক্লাস খুঁজে পাওয়া যায়নি।", takeQuiz: "কুইজ টেস্ট দিন", quizTitle: "আপনার জ্ঞান যাচাই করুন", quizDesc: "এই ক্লাসের উপর ভিত্তি করে কুইজ টেস্ট দিন এবং নিজেকে যাচাই করুন।", startQuiz: "কুইজ শুরু করুন", resumeQuiz: "কুইজ চালিয়ে যান", question: "প্রশ্ন", next: "পরবর্তী", finish: "ফলাফল দেখুন", yourScore: "আপনার স্কোর", totalQuestions: "মোট প্রশ্ন", retry: "আবার চেষ্টা করুন", backToLecture: "ক্লাসে ফিরে যান", correct: "সঠিক উত্তর!", wrong: "ভুল উত্তর!", correctAnswerIs: "সঠিক উত্তরটি হলো:", globalQuizTitle: "সীরাত কুইজ পরীক্ষা", globalQuizDesc: "আপনার সীরাত জ্ঞান যাচাই করুন এবং নিজেকে প্রস্তুত করুন।", startGlobalQuiz: "কুইজ শুরু করুন", start: "শুরু করুন", enterDetails: "আপনার পরিচয় দিন", nameLabel: "আপনার নাম", guardianLabel: "পিতা/স্বামীর নাম", namePlaceholder: "আপনার পূর্ণ নাম লিখুন...", guardianPlaceholder: "নাম লিখুন...", leaderboardTitle: "মেধাতালিকা", rank: "অবস্থান", name: "নাম", score: "প্রাপ্ত নম্বর", time: "জমার সময়", submissionSerial: "জমার ক্রম", timeTaken: "গৃহীত সময়", viewLeaderboard: "মেধাতালিকা দেখুন", goHome: "হোমপেজ", 
             quizNotStarted: "শুরু হতে বাকি:", quizEnded: "কুইজ সমাপ্ত হয়েছে", enterQuiz: "কুইজ শুরু করুন", quizRunning: "কুইজ চলছে",
-            viewResults: "উত্তর দেখুন", archiveQuizDesc: "এই ক্লাসটির কুইজ প্র্যাকটিস করুন।", startArchiveQuiz: "প্র্যাকটিস শুরু করুন"
+            viewResults: "উত্তর দেখুন", archiveQuizDesc: "এই ক্লাসটির কুইজ প্র্যাকটিস করুন।", startArchiveQuiz: "প্র্যাকটিস শুরু করুন", resumePractice: "প্র্যাকটিস চালিয়ে যান"
         };
 
         // --- UPDATED COURSE DATA WITH SHEET MAPPING ---
@@ -487,7 +487,7 @@
                     btn.innerHTML = `<i data-lucide="play-circle" class="w-5 h-5"></i> ${TEXTS.resumeQuiz} (${formatCountdown(diff)})`;
                     btn.disabled = false;
                     btn.onclick = () => window.actions.resumeQuiz();
-                    btn.className = "px-8 py-3 rounded-full font-bold transition-all shadow-xl flex items-center justify-center gap-2 whitespace-nowrap bg-emerald-600 text-white hover:bg-emerald-700 hover:scale-105 animate-pulse border-2 border-emerald-500 shadow-emerald-500/20";
+                    btn.className = "px-8 py-3 rounded-full font-bold transition-all shadow-xl flex items-center justify-center gap-2 whitespace-nowrap bg-white text-emerald-700 hover:bg-emerald-50 hover:scale-105 animate-pulse border-2 border-emerald-500 shadow-emerald-500/20";
                     return;
                 }
                 
@@ -571,6 +571,13 @@
                 scheduleNote = "বর্তমানে কোনো লাইভ কুইজ নেই";
             }
 
+            // Static placeholder for home button - handleQuizCountdown will update it
+            let btnText = "লোড হচ্ছে...";
+            let btnClass = "px-8 py-3 rounded-full font-bold transition-all shadow-xl flex items-center justify-center gap-2 whitespace-nowrap bg-white text-emerald-700 hover:bg-white hover:scale-105";
+            let btnDisabled = true;
+            let btnIcon = "loader";
+            let btnAction = ""; // No action initially
+
             return `
             <main class="container mx-auto px-4 py-4 md:py-6 min-h-[calc(100vh-140px)] animate-fade-in">
                 <div class="rounded-3xl p-5 md:p-6 border mb-6 bg-gradient-to-br from-white to-emerald-50/40 border-emerald-100/50 shadow-sm dark:from-slate-900 dark:to-slate-950 dark:border-slate-800 relative overflow-hidden">
@@ -596,7 +603,7 @@
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 relative z-10">
                         <button onclick="actions.viewLeaderboard('live')" class="bg-teal-900/80 hover:bg-teal-950 text-white px-6 py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2 whitespace-nowrap border-none backdrop-blur-sm"><i data-lucide="list-ordered" class="w-5 h-5"></i> ${TEXTS.viewLeaderboard}</button>
-                        <button id="quiz-start-btn" disabled class="px-8 py-3 rounded-full font-bold transition-all shadow-xl flex items-center justify-center gap-2 whitespace-nowrap bg-white text-emerald-700 hover:bg-white hover:scale-105"><i data-lucide="loader" class="w-5 h-5 animate-spin"></i> লোড হচ্ছে...</button>
+                        <button id="quiz-start-btn" disabled class="${btnClass}"><i data-lucide="${btnIcon}" class="w-5 h-5 animate-spin"></i> ${btnText}</button>
                     </div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-4 justify-between items-center sticky top-20 z-30 py-2 mb-8">
@@ -673,11 +680,14 @@
             if (ALL_QUIZZES.length > 0) {
                  const saved = getSavedQuizState();
                  if (saved && saved.isFinished) {
-                     // Finished: Show Both "View Results" AND "Start Practice"
+                     // Finished: Show Both "View Results" AND "Start Practice (Fresh Start)"
                      buttons.push(`<button onclick="actions.reviewQuizAnswers()" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm whitespace-nowrap"><i data-lucide="list-checks" class="w-4 h-4"></i> ${TEXTS.viewResults}</button>`);
-                     buttons.push(`<button onclick="actions.startQuiz('archive')" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm whitespace-nowrap"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> ${TEXTS.startArchiveQuiz}</button>`);
+                     buttons.push(`<button onclick="actions.startQuiz('archive', true)" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm whitespace-nowrap"><i data-lucide="rotate-ccw" class="w-4 h-4"></i> ${TEXTS.startArchiveQuiz}</button>`);
+                 } else if (saved && saved.expiryTime > Date.now()) {
+                     // Not Finished (Running): Show "Continue Practice"
+                     buttons.push(`<button onclick="actions.resumeQuiz()" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm whitespace-nowrap animate-pulse"><i data-lucide="play-circle" class="w-4 h-4"></i> ${TEXTS.resumePractice}</button>`);
                  } else {
-                     // Not Started / Running
+                     // Not Started: Show "Start Practice"
                      buttons.push(`<button onclick="actions.startQuiz('archive')" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm whitespace-nowrap"><i data-lucide="play-circle" class="w-4 h-4"></i> ${TEXTS.startArchiveQuiz}</button>`);
                  }
             } else {
@@ -975,9 +985,16 @@
                 window.scrollTo(0, 0); 
                 render(); 
             },
-            startQuiz: async (mode = 'live') => {
+            startQuiz: async (mode = 'live', forceRestart = false) => {
                 if (ALL_QUIZZES.length === 0) { alert("কুইজ লোড করা যায়নি।"); return; }
-                const saved = getSavedQuizState(); if (saved) { actions.resumeQuiz(); return; }
+                
+                if (forceRestart) {
+                    const key = CURRENT_QUIZ_ID ? `seerat_quiz_state_${CURRENT_QUIZ_ID}` : 'seerat_quiz_state_live';
+                    localStorage.removeItem(key);
+                } else {
+                    const saved = getSavedQuizState(); 
+                    if (saved && !saved.isFinished) { actions.resumeQuiz(); return; }
+                }
                 
                 state.quiz = { 
                     active: true, currentQuestion: 0, score: 0, selectedOption: null, selectedOptions: [], 
