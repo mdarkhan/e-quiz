@@ -67,6 +67,34 @@
             transform: none;
             box-shadow: none;
         }
+        
+        /* Mega Question Animations & Styles */
+        @keyframes golden-shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .mega-card {
+            border: 2px solid #fbbf24;
+            background: linear-gradient(145deg, #fffbeb, #fef3c7);
+            position: relative;
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.2);
+        }
+        .dark .mega-card {
+            border: 2px solid #d97706;
+            background: linear-gradient(145deg, #451a03, #291002);
+            box-shadow: 0 10px 25px -5px rgba(217, 119, 6, 0.2);
+        }
+        .mega-badge {
+            background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+            background-size: 200% auto;
+            animation: golden-shimmer 3s linear infinite;
+            color: #78350f;
+        }
+        .dark .mega-badge {
+            color: #fffbeb;
+            background: linear-gradient(90deg, #d97706, #f59e0b, #d97706);
+            background-size: 200% auto;
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-stone-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col antialiased">
@@ -119,13 +147,13 @@
             { id: 5, date: "৩০ জানুয়ারি ২০২৬", duration: "২ ঘণ্টা ২৫ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/13Csszc6M7y8gNIiAty4DuizylpNgV_cc/view?usp=sharing", content: { title: "সীরাত-০৫", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: `পরীক্ষা দারস, একাধিক বিয়ের শীট ও "সীরাতে খাতামুল আম্বিয়া" বইয়ের ৫১ থেকে ৫৪ নম্বর পৃষ্ঠা পর্যন্ত এর উপর হবে।`, resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
             { id: 6, date: "০৬ ফেব্রুয়ারি ২০২৬", duration: "২ ঘণ্টা ২৩ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/11n7Vnt_P5U4TLmWFX656WJDvATrHkPaT/view?usp=sharing", content: { title: "সীরাত-০৬", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: `পরীক্ষা দারস ও "সীরাতে খাতামুল আম্বিয়া" বইয়ের ৫৫ থেকে ৬৮ নম্বর পৃষ্ঠা পর্যন্ত এর উপর হবে।`, resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
 			{ id: 7, date: "১৩ ফেব্রুয়ারি ২০২৬", duration: "২ ঘণ্টা ১৩ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1X8wQ7XGO-nlVfBnuVf-hKg1Y6TgJcHoT/view?usp=sharing", content: { title: "সীরাত-০৭", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: `পরীক্ষা দারস ও "সীরাতে খাতামুল আম্বিয়া" বইয়ের ৬৮ থেকে ৭১ নম্বর পৃষ্ঠা পর্যন্ত এর উপর হবে।`, resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
-			{ id: 8, date: "২০ ফেব্রুয়ারি ২০২৬", duration: "২ ঘণ্টা ০৯ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1FjGPjcWu3DNOgiktJ2gyEsrdRs413Z9f/view?usp=sharing", content: { title: "সীরাত-০৮", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: "#", resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
+            { id: 8, date: "২০ ফেব্রুয়ারি ২০২৬", duration: "২ ঘণ্টা ০৯ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1FjGPjcWu3DNOgiktJ2gyEsrdRs413Z9f/view?usp=sharing", content: { title: "সীরাত-০৮", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: "#", resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
 			{ id: 9, date: "২৭ ফেব্রুয়ারি ২০২৬", duration: "২ ঘণ্টা ০৫ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1JDjE1LCe0NdQY1Vq_5VdBQwX4OxUR_41/view?usp=sharing", content: { title: "সীরাত-০৯", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: "#", resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
 			{ id: 10, date: "০৬ মার্চ ২০২৬", duration: "২ ঘণ্টা ০৫ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1ZFF_2uY7U4FSryEJZZzAhwBud2i9B3tS/view?usp=sharing", content: { title: "সীরাত-১০", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: "#", resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
 			{ id: 11, date: "১৩ মার্চ ২০২৬", duration: "২ ঘণ্টা ১৩ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1w6vQnKX1mcLmFX0iwQmkOxKuplkC7Fmo/view?usp=sharing", content: { title: "সীরাত-১১", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: "#", resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
 			{ id: 12, date: "২৭ মার্চ ২০২৬", duration: "২ ঘণ্টা ২৭ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1JV7Sg4aT7lxF_zySVfT2h1IetMYLE4dr/view?usp=sharing", content: { title: "সীরাত-১২", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: "#", resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
-			{ id: 13, date: "০৩ এপ্রিল ২০২৬", duration: "২ ঘণ্টা ৫০ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1pGTABJHPOIydN62_yrSQFOfXP_lHiqO1/view?usp=sharing", content: { title: "সীরাত-১৩", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: "#", resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
-            // Halakah Section
+            { id: 13, date: "০৩ এপ্রিল ২০২৬", duration: "২ ঘণ্টা ৫০ মিনিট", category: "seerat", driveLink: "https://drive.google.com/file/d/1pGTABJHPOIydN62_yrSQFOfXP_lHiqO1/view?usp=sharing", content: { title: "সীরাত-১৩", description: "এই ক্লাসের বিস্তারিত তথ্য ও কুইজ শীঘ্রই আপডেট করা হবে।", syllabus: "#", resources: [{ label: 'বইঃ "সীরাতে খাতামুল আম্বিয়া"<br />(লেখকঃ মুফতী মুহাম্মদ শফী)', url: "#" }] }, quiz: [] },
+			// Halakah Section
             { id: 101, date: "সংগৃহীত", duration: "৫৮ মিনিট", category: "halakah", driveLink: "https://drive.google.com/file/d/1TsM9B0GElMMMo-8Qj_rO_Sv3QaNhv9Oe/view?usp=sharing", content: { title: "মহিলাদের হালাকাহ-০১", description: "নামাজ", resources: [] }, quiz: [] },
             { id: 102, date: "সংগৃহীত", duration: "৫৬ মিনিট", category: "halakah", driveLink: "https://drive.google.com/file/d/1KAfzoRaNAJrq0JioJuyN6-xZOGejBuEs/view?usp=sharing", content: { title: "মহিলাদের হালাকাহ-০২", description: "ইলমের গুরুত্ব ও ফজিলত", resources: [] }, quiz: [] },
             { id: 103, date: "সংগৃহীত", duration: "৫৩ মিনিট", category: "halakah", driveLink: "https://drive.google.com/file/d/1ijQkY8gQz7Z3rMH-8hxDNoyaQcodoiRs/view?usp=sharing", content: { title: "মহিলাদের হালাকাহ-০৩", description: "মুখের হেফাজত", resources: [] }, quiz: [] },
@@ -403,7 +431,19 @@
                         correctVal = parseBanglaNumber(correctVal); 
                         
                         let correctIndices = correctVal.includes(",") ? correctVal.split(',').map(s => parseInt(s.trim()) - 1).filter(n => !isNaN(n)) : (!isNaN(parseInt(correctVal)) ? [parseInt(correctVal) - 1] : []);
-                        return { question: cells[0]?.v || "প্রশ্ন লোড হয়নি", options, correctIndices, correctIndex: correctIndices[0], note: "", type: correctIndices.length > 1 ? "multiple" : "single" };
+                        
+                        // --- NEW: Mega Question Logic (Column W is index 22) ---
+                        let megaPoints = 1;
+                        let isMega = false;
+                        if (cells[22] && cells[22].v) {
+                            const parsedPoints = parseInt(parseBanglaNumber(String(cells[22].v)));
+                            if (!isNaN(parsedPoints) && parsedPoints > 0) {
+                                megaPoints = parsedPoints;
+                                isMega = true;
+                            }
+                        }
+
+                        return { question: cells[0]?.v || "প্রশ্ন লোড হয়নি", options, correctIndices, correctIndex: correctIndices[0], note: "", type: correctIndices.length > 1 ? "multiple" : "single", points: megaPoints, isMega: isMega };
                     });
 
                     // Update Global for Homepage ONLY if it's Live
@@ -893,7 +933,7 @@
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button onclick="actions.handlePayment('no')" class="flex-1 py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-base shadow-sm transition-all transform active:scale-95 border border-red-700 flex items-center justify-center gap-2"><i data-lucide="x-circle" class="w-5 h-5"></i> না, পরে দিবো</button>
+                        <button onclick="actions.handlePayment('no')" class="flex-1 py-3.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white font-bold text-base shadow-sm transition-all transform active:scale-95 border border-stone-200 dark:border-slate-600 flex items-center justify-center gap-2"><i data-lucide="x-circle" class="w-5 h-5 opacity-50"></i> না, পরে দিবো</button>
                         <button onclick="actions.handlePayment('yes')" class="flex-1 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2"><i data-lucide="check-circle" class="w-5 h-5"></i> হ্যাঁ, দিয়েছি</button>
                     </div>
                 </div>
@@ -975,14 +1015,19 @@
                 </div>
             </div>`;
         // -- QUIZ & REVIEW --
-        const getOptionClass = (isSelected, isRight, isReview) => {
+        const getOptionClass = (isSelected, isRight, isReview, isMega = false) => {
              if (isReview) {
                  if (isRight) return "bg-emerald-50 border-emerald-200 text-emerald-800 dark:bg-emerald-900/30 dark:border-emerald-500/30 dark:text-emerald-300";
                  if (isSelected && !isRight) return "bg-rose-50 border-rose-200 text-rose-800 dark:bg-rose-900/30 dark:border-rose-500/30 dark:text-rose-300";
                  return "border-gray-100 text-gray-500 dark:border-slate-700 dark:opacity-50";
              } else {
                  // Active Quiz
-                 if (isSelected) return "bg-emerald-50 border-emerald-500 ring-1 ring-emerald-500 shadow-md dark:bg-emerald-900/40 dark:border-emerald-500 dark:ring-emerald-500";
+                 if (isSelected) {
+                     if (isMega) return "bg-yellow-100 border-yellow-500 ring-1 ring-yellow-500 shadow-md text-yellow-900 dark:bg-yellow-900/60 dark:border-yellow-500 dark:text-yellow-100";
+                     return "bg-emerald-50 border-emerald-500 ring-1 ring-emerald-500 shadow-md dark:bg-emerald-900/40 dark:border-emerald-500 dark:ring-emerald-500";
+                 }
+                 if (isMega) return "bg-white/80 border-yellow-300 hover:border-yellow-500 hover:bg-yellow-50 shadow-sm dark:bg-slate-800/80 dark:border-yellow-700/60 dark:hover:border-yellow-500 dark:hover:bg-yellow-900/40";
+                 
                  return "bg-white border-stone-200 hover:border-emerald-300 hover:bg-emerald-50/30 shadow-sm dark:bg-slate-800 dark:border-slate-700 dark:hover:border-slate-600 dark:hover:bg-slate-750";
              }
         };
@@ -1003,8 +1048,13 @@
                             const uAns = (userAnswers[idx] || []).slice().sort((a, b) => a - b);
                             const cAns = q.correctIndices.slice().sort((a, b) => a - b);
                             const isCorrect = JSON.stringify(uAns) === JSON.stringify(cAns);
+                            
+                            const megaReviewBadge = q.isMega ? `<div class="absolute top-0 right-0 rounded-bl-xl px-3 py-1 bg-yellow-400 text-yellow-900 text-xs font-bold flex items-center gap-1 shadow-sm"><i data-lucide="star" class="w-3 h-3 fill-current"></i> ${toBanglaDigit(q.points)} মার্কস</div>` : '';
+                            const megaBorderClass = q.isMega ? (isCorrect ? 'border-yellow-500 ring-2 ring-yellow-400/50' : 'border-rose-500 ring-2 ring-rose-400/50') : (isCorrect ? 'border-emerald-500' : 'border-rose-500');
+
                             return `
-                            <div class="rounded-2xl border-l-4 shadow-sm overflow-hidden bg-white dark:bg-slate-800 ${isCorrect ? 'border-emerald-500' : 'border-rose-500'}">
+                            <div class="rounded-2xl border-l-4 shadow-sm overflow-hidden bg-white dark:bg-slate-800 ${megaBorderClass} relative">
+                                ${megaReviewBadge}
                                 <div class="p-5 flex gap-4">
                                     <div class="shrink-0 mt-0.5"><div class="w-6 h-6 rounded-full text-white flex items-center justify-center ${isCorrect ? 'bg-emerald-500' : 'bg-rose-500'}">${isCorrect ? SVGS.check : SVGS.x}</div></div>
                                     <div class="space-y-4 w-full">
@@ -1098,15 +1148,21 @@
                     ${questions.map((q, qIdx) => {
                         const isMultiple = q.correctIndices.length > 1;
                         const uAns = userAnswers[qIdx] || [];
+                        
+                        const megaWrapperClass = q.isMega ? 'mega-card rounded-2xl p-5 md:p-7 mt-10 mb-8' : '';
+                        const megaHeaderBadge = q.isMega ? `<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 mega-badge px-5 py-1.5 rounded-full text-xs font-black tracking-widest flex items-center gap-1.5 shadow-lg border border-yellow-300 dark:border-yellow-600 whitespace-nowrap z-10"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i> মেগা প্রশ্ন (${toBanglaDigit(q.points)} মার্কস)</div>` : '';
+                        const numberBadgeClass = q.isMega ? 'bg-yellow-500 text-white shadow-yellow-500/50' : 'bg-emerald-600 text-white';
+
                         return `
-                        <div class="animate-fade-in" style="animation-delay: ${qIdx * 0.05}s">
-                            <div class="flex items-start gap-4 mb-6"><span class="flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-emerald-600 text-white font-bold text-sm shadow-md">${toBanglaDigit(qIdx + 1)}</span><div class="space-y-1"><h3 class="text-xl font-bold leading-relaxed">${q.question}</h3></div></div>
-                            <div class="grid grid-cols-1 gap-3 pl-0 md:pl-12">
+                        <div class="animate-fade-in ${megaWrapperClass} relative" style="animation-delay: ${qIdx * 0.05}s">
+                            ${megaHeaderBadge}
+                            <div class="flex items-start gap-4 mb-6"><span class="flex items-center justify-center shrink-0 w-8 h-8 rounded-full ${numberBadgeClass} font-bold text-sm shadow-md z-10 relative">${toBanglaDigit(qIdx + 1)}</span><div class="space-y-1"><h3 class="text-xl font-bold leading-relaxed relative z-10">${q.question}</h3></div></div>
+                            <div class="grid grid-cols-1 gap-3 pl-0 md:pl-12 relative z-10">
                                 ${q.options.map((option, optIdx) => {
                                     const isSelected = uAns.includes(optIdx);
-                                    let badgeClass = isSelected ? 'bg-emerald-600 text-white dark:bg-emerald-500' : 'bg-stone-100 text-stone-600 group-hover:bg-emerald-100 group-hover:text-emerald-700 dark:bg-slate-700 dark:text-slate-300 dark:group-hover:bg-slate-600 dark:group-hover:text-white';
+                                    let badgeClass = isSelected ? (q.isMega ? 'bg-yellow-500 text-white dark:bg-yellow-600' : 'bg-emerald-600 text-white dark:bg-emerald-500') : 'bg-stone-100 text-stone-600 group-hover:bg-emerald-100 group-hover:text-emerald-700 dark:bg-slate-700 dark:text-slate-300 dark:group-hover:bg-slate-600 dark:group-hover:text-white';
                                     let marker = isSelected ? SVGS.checkSquare : SVGS.square;
-                                    return `<button type="button" onclick="actions.toggleQuizOption(${qIdx}, ${optIdx})" class="w-full p-3 md:p-4 rounded-xl border-2 text-left font-medium transition-all duration-200 flex items-center justify-between group ${getOptionClass(isSelected, false, false)}"><div class="flex items-center gap-3"><div class="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-colors ${badgeClass}">${banglaIndices[optIdx] || (optIdx + 1)}</div><span class="text-base ${isSelected ? 'text-emerald-800 dark:text-emerald-100 font-bold' : ''}">${option}</span></div><div class="shrink-0 pl-2">${marker}</div></button>`;
+                                    return `<button type="button" onclick="actions.toggleQuizOption(${qIdx}, ${optIdx})" class="w-full p-3 md:p-4 rounded-xl border-2 text-left font-medium transition-all duration-200 flex items-center justify-between group ${getOptionClass(isSelected, false, false, q.isMega)}"><div class="flex items-center gap-3"><div class="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-colors ${badgeClass}">${banglaIndices[optIdx] || (optIdx + 1)}</div><span class="text-base ${isSelected ? (q.isMega ? 'text-yellow-900 dark:text-yellow-100 font-bold' : 'text-emerald-800 dark:text-emerald-100 font-bold') : ''}">${option}</span></div><div class="shrink-0 pl-2">${marker}</div></button>`;
                                 }).join('')}
                             </div>
                         </div>`;
@@ -1379,7 +1435,9 @@
             state.quiz.questions.forEach((q, idx) => {
                 const uAns = (state.quiz.userAnswers[idx] || []).slice().sort((a, b) => a - b);
                 const cAns = q.correctIndices.slice().sort((a, b) => a - b);
-                if (JSON.stringify(uAns) === JSON.stringify(cAns)) score++;
+                if (JSON.stringify(uAns) === JSON.stringify(cAns)) {
+                    score += (q.points || 1); // Mark according to mega points
+                }
             });
             state.quiz.score = score; 
 
