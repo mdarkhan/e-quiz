@@ -67,6 +67,28 @@
             transform: none;
             box-shadow: none;
         }
+        
+        /* Mega Question Shimmer Effect */
+        @keyframes mega-shimmer {
+            0% { transform: translateX(-150%) skewX(-25deg); }
+            100% { transform: translateX(200%) skewX(-25deg); }
+        }
+        .mega-shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.4), transparent);
+            z-index: 1;
+            pointer-events: none;
+            animation: mega-shimmer 3s infinite ease-in-out;
+        }
+        .dark .mega-shimmer-effect::after {
+            background: linear-gradient(90deg, transparent, rgba(250, 204, 21, 0.08), transparent);
+        }
+        .mega-content-z {
+            position: relative;
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-stone-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col antialiased">
@@ -403,7 +425,15 @@
                         correctVal = parseBanglaNumber(correctVal); 
                         
                         let correctIndices = correctVal.includes(",") ? correctVal.split(',').map(s => parseInt(s.trim()) - 1).filter(n => !isNaN(n)) : (!isNaN(parseInt(correctVal)) ? [parseInt(correctVal) - 1] : []);
-                        return { question: cells[0]?.v || "প্রশ্ন লোড হয়নি", options, correctIndices, correctIndex: correctIndices[0], note: "", type: correctIndices.length > 1 ? "multiple" : "single" };
+                        
+                        // Mega Question Parsing (Column W / Index 22)
+                        let points = 1;
+                        if (cells[22] && cells[22].v !== null && cells[22].v !== "") {
+                            const parsedPoints = parseInt(parseBanglaNumber(String(cells[22].v)));
+                            if (!isNaN(parsedPoints)) points = parsedPoints;
+                        }
+
+                        return { question: cells[0]?.v || "প্রশ্ন লোড হয়নি", options, correctIndices, correctIndex: correctIndices[0], note: "", type: correctIndices.length > 1 ? "multiple" : "single", points: points };
                     });
 
                     // Update Global for Homepage ONLY if it's Live
@@ -1003,12 +1033,24 @@
                             const uAns = (userAnswers[idx] || []).slice().sort((a, b) => a - b);
                             const cAns = q.correctIndices.slice().sort((a, b) => a - b);
                             const isCorrect = JSON.stringify(uAns) === JSON.stringify(cAns);
+                            const isMega = q.points > 1;
+                            
+                            let cardBaseClass = `rounded-2xl border-l-4 overflow-hidden relative ${isCorrect ? 'border-emerald-500' : 'border-rose-500'}`;
+                            if (isMega) {
+                                cardBaseClass += ` bg-gradient-to-br from-yellow-50 to-amber-50/30 dark:from-yellow-900/20 dark:to-slate-800 ring-2 ring-amber-400 dark:ring-amber-500/60 shadow-[0_4px_20px_rgba(251,191,36,0.3)] dark:shadow-[0_4px_20px_rgba(251,191,36,0.1)] mega-shimmer-effect`;
+                            } else {
+                                cardBaseClass += ` bg-white dark:bg-slate-800 shadow-sm`;
+                            }
+
                             return `
-                            <div class="rounded-2xl border-l-4 shadow-sm overflow-hidden bg-white dark:bg-slate-800 ${isCorrect ? 'border-emerald-500' : 'border-rose-500'}">
-                                <div class="p-5 flex gap-4">
-                                    <div class="shrink-0 mt-0.5"><div class="w-6 h-6 rounded-full text-white flex items-center justify-center ${isCorrect ? 'bg-emerald-500' : 'bg-rose-500'}">${isCorrect ? SVGS.check : SVGS.x}</div></div>
+                            <div class="${cardBaseClass}">
+                                <div class="p-5 flex gap-4 mega-content-z">
+                                    <div class="shrink-0 mt-0.5"><div class="w-6 h-6 rounded-full text-white flex items-center justify-center shadow-sm ${isCorrect ? 'bg-emerald-500' : 'bg-rose-500'}">${isCorrect ? SVGS.check : SVGS.x}</div></div>
                                     <div class="space-y-4 w-full">
-                                        <h4 class="font-bold text-lg leading-relaxed"><span class="opacity-40 mr-2">${toBanglaDigit(idx + 1)}.</span>${q.question}</h4>
+                                        <div class="flex flex-col sm:flex-row sm:items-start gap-2 justify-between">
+                                            <h4 class="font-bold text-lg leading-relaxed"><span class="opacity-40 mr-2">${toBanglaDigit(idx + 1)}.</span>${q.question}</h4>
+                                            ${isMega ? `<span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[13px] font-bold bg-gradient-to-r from-amber-400 to-yellow-500 text-stone-900 shadow-lg shadow-amber-500/20 shrink-0 border border-yellow-300 w-max self-start"><i data-lucide="crown" class="w-4 h-4 fill-stone-900"></i> মেগা <span class="text-xl font-black px-0.5">${toBanglaDigit(q.points)}</span> নম্বর</span>` : ''}
+                                        </div>
                                         <div class="space-y-2">
                                             ${q.options.map((opt, optIdx) => {
                                                 const isRight = q.correctIndices.includes(optIdx);
@@ -1379,7 +1421,9 @@
             state.quiz.questions.forEach((q, idx) => {
                 const uAns = (state.quiz.userAnswers[idx] || []).slice().sort((a, b) => a - b);
                 const cAns = q.correctIndices.slice().sort((a, b) => a - b);
-                if (JSON.stringify(uAns) === JSON.stringify(cAns)) score++;
+                if (JSON.stringify(uAns) === JSON.stringify(cAns)) {
+                    score += (q.points || 1);
+                }
             });
             state.quiz.score = score; 
 
